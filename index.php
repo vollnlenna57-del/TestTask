@@ -18,6 +18,7 @@
         $search_query = $_GET['search'] ?? '';
 
         $sql = "SELECT 
+                    e.id,
                     e.last_name,
                     e.first_name,
                     e.middle_name,
@@ -99,6 +100,7 @@
         <?php
         if ($result && $result->num_rows > 0) {
         ?>
+        <a href="employee_form.php" class="btn-add">Добавить сотрудника</a>
         <table class="employees-table">
             <thead>
                 <tr>
@@ -137,6 +139,7 @@
                     <td><?php echo htmlspecialchars($row['position_title']); ?></td>
                     <td class="salary"><?php echo number_format($row['salary'], 0, '', ' '); ?> ₽</td>
                     <td><?php echo date('d.m.Y', strtotime($row['hire_date'])); ?></td>
+                    <td> <a href="employee_form.php?id=<?php echo $row['id']; ?>" class="btn-edit">Редактировать</a> </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>

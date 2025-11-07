@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header class="main-header">
-        <h1>Кадровый учет сотрудников организации</h1>
-    </header>
+    <h1>Кадровый учет сотрудников организации</h1>
 
     <main class="container">
         <?php
@@ -56,7 +54,16 @@
                 <tr>
                     <td><?php echo htmlspecialchars($row['last_name'] . ' ' . $row['first_name'] . ' ' . $row['middle_name']); ?></td>
                     <td><?php echo date('d.m.Y', strtotime($row['birth_date'])); ?></td>
-                    <td class="passport"><?php echo htmlspecialchars($row['passport']); ?></td>
+                    <td class="passport">
+                        <?php 
+                        $passport = htmlspecialchars($row['passport']);
+                        if (strlen($passport) >= 4) {
+                            echo substr($passport, 0, 4) . ' ' . substr($passport, 4);
+                        } else {
+                            echo $passport;
+                        }
+                        ?>
+                    </td>
                     <td class="contacts">
                         <div class="phone"><?php echo htmlspecialchars($row['phone']); ?></div>
                         <div class="email"><?php echo htmlspecialchars($row['email']); ?></div>

@@ -13,6 +13,9 @@
         <?php
         require_once 'config/db.php';
 
+        $dept_filter = $_GET['department'] ?? '';
+        $pos_filter = $_GET['position'] ?? '';
+
         $sql = "SELECT 
                     e.last_name,
                     e.first_name,
@@ -28,11 +31,51 @@
                     e.hire_date
                 FROM employees e
                 JOIN departments d ON e.department_id = d.id
-                JOIN positions p ON e.position_id = p.id
-                ORDER BY e.last_name, e.first_name";
+                JOIN positions p ON e.position_id = p.id";
+
+        $where = [];
+        if ($dept_filter) $where[] = "e.department_id = " . (int)$dept_filter;
+        if ($pos_filter) $where[] = "e.position_id = " . (int)$pos_filter;
+
+        if ($where) $sql .= " WHERE " . implode(" AND ", $where);
+
+        $sql .= " ORDER BY e.last_name, e.first_name";
 
         $result = $conn->query($sql);
+        ?>
 
+        <div class="filters">
+            <form method="GET" class="filter-form">
+                <select name="department" class="filter-select">
+                    <option value="">Все отделы</option>
+                    <?php 
+                    $depts = $conn->query("SELECT id, name FROM departments ORDER BY name");
+                    while($dept = $depts->fetch_assoc()): ?>
+                        <option value="<?php echo $dept['id']; ?>" 
+                            <?php echo $dept_filter == $dept['id'] ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($dept['name']); ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+
+                <select name="position" class="filter-select">
+                    <option value="">Все должности</option>
+                    <?php 
+                    $positions = $conn->query("SELECT id, title FROM positions ORDER BY title");
+                    while($pos = $positions->fetch_assoc()): ?>
+                        <option value="<?php echo $pos['id']; ?>" 
+                            <?php echo $pos_filter == $pos['id'] ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($pos['title']); ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+
+                <button type="submit" class="filter-btn">Фильтровать</button>
+                <a href="?" class="reset-btn">Сбросить</a>
+            </form>
+        </div>
+
+        <?php
         if ($result && $result->num_rows > 0) {
         ?>
         <table class="employees-table">

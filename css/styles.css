@@ -127,3 +127,25 @@ h1 {
 .reset-btn:hover {
     background: dimgray;
 }
+
+.search-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    background: white;
+    min-width: 250px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: midnightblue;
+    box-shadow: 0 0 0 2px rgba(25, 25, 112, 0.1);
+}

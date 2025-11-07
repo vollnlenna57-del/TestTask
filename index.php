@@ -15,6 +15,7 @@
 
         $dept_filter = $_GET['department'] ?? '';
         $pos_filter = $_GET['position'] ?? '';
+        $search_query = $_GET['search'] ?? '';
 
         $sql = "SELECT 
                     e.last_name,
@@ -37,15 +38,35 @@
         if ($dept_filter) $where[] = "e.department_id = " . (int)$dept_filter;
         if ($pos_filter) $where[] = "e.position_id = " . (int)$pos_filter;
 
+        if ($search_query) {
+            $search_condition = "CONCAT(e.last_name, ' ', e.first_name, ' ', e.middle_name) LIKE ?";
+            $where[] = $search_condition;
+        }
+
         if ($where) $sql .= " WHERE " . implode(" AND ", $where);
 
         $sql .= " ORDER BY e.last_name, e.first_name";
 
-        $result = $conn->query($sql);
+        $stmt = $conn->prepare($sql);
+
+        if ($search_query) {
+            $search_param = "%" . $search_query . "%";
+            $stmt->bind_param("s", $search_param);
+        }
+
+        $stmt->execute();
+        $result = $stmt->get_result();
         ?>
 
         <div class="filters">
             <form method="GET" class="filter-form">
+                <div class="search-group">
+                <input type="text" 
+                   name="search" 
+                   class="search-input" 
+                   placeholder="Поиск сотрудника по ФИО..." 
+                   value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                </div>
                 <select name="department" class="filter-select">
                     <option value="">Все отделы</option>
                     <?php 

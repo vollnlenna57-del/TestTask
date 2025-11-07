@@ -1,4 +1,11 @@
 <?php
+if (file_exists(__DIR__ . '/../.env')) {
+    $env = parse_ini_file(__DIR__ . '/../.env');
+    foreach ($env as $key => $value) {
+        putenv("$key=$value");
+    }
+}
+
 $servername = getenv('DB_HOST');  
 $username = getenv('DB_USER');         
 $password = getenv('DB_PASSWORD');             

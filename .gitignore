@@ -23,3 +23,8 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+# Environment variables
+.env
+.env.local
+.env.*.local

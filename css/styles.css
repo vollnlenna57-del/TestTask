@@ -6,21 +6,18 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: ghostwhite;
     line-height: 1.6;
     overflow-x: auto;
 }
 
 h1 {
-    color: #2c3e50;
+    color: midnightblue;
     padding: 2rem 0;
     text-align: center;
     margin-bottom: 2rem;
-}
-
-.main-header h1 {
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 600;
 }
 
 .container {
@@ -38,7 +35,7 @@ h1 {
 }
 
 .employees-table th {
-    background: #34495e;
+    background: slategray;
     color: white;
     padding: 1rem;
     text-align: left;
@@ -47,12 +44,12 @@ h1 {
 
 .employees-table td {
     padding: 1rem;
-    border-bottom: 1px solid #ecf0f1;
+    border-bottom: 1px solid gainsboro;
     max-width: 200px
 }
 
 .employees-table tr:hover {
-    background-color: #f8f9fa;
+    background-color: ghostwhite;
 }
 
 .passport {
@@ -66,18 +63,18 @@ h1 {
 
 .contacts .email {
     font-size: 0.9em;
-    color: #666;
+    color: grey;
 }
 
 .salary {
     font-weight: bold;
-    color: #27ae60;
+    color: green;
 }
 
 .no-data {
     text-align: center;
     padding: 2rem;
-    color: #7f8c8d;
+    color: grey;
     font-size: 1.1rem;
 }
 
@@ -97,7 +94,7 @@ h1 {
 
 .filter-select {
     padding: 8px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid lightgray;
     border-radius: 4px;
     background: white;
     min-width: 150px;
@@ -105,7 +102,7 @@ h1 {
 }
 
 .filter-btn {
-    background: #34495e;
+    background: slategray;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -115,11 +112,11 @@ h1 {
 }
 
 .filter-btn:hover {
-    background: #2c3e50;
+    background: midnightblue;
 }
 
 .reset-btn {
-    background: #95a5a6;
+    background: darkgray;
     color: white;
     text-decoration: none;
     padding: 8px 16px;
@@ -128,5 +125,5 @@ h1 {
 }
 
 .reset-btn:hover {
-    background: #7f8c8d;
+    background: dimgray;
 }

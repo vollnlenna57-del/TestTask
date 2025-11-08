@@ -84,6 +84,7 @@ h1 {
     border-radius: 8px;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 14px;
 }
 
 .filter-form {
@@ -116,6 +117,9 @@ h1 {
 }
 
 .reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: darkgray;
     color: white;
     text-decoration: none;
@@ -269,9 +273,10 @@ h1 {
     background-color: red;
     color: white;
     padding: 4px 8px;
-    border-radius: 5px;
+    border-radius: 3px;
     text-decoration: none;
     margin-left: 5px;
+    font-size: 12px;
 }
 
 .btn-fire:hover {

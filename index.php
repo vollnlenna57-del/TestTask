@@ -30,7 +30,8 @@
                     d.name as department_name,
                     p.title as position_title,
                     e.salary,
-                    e.hire_date
+                    e.hire_date,
+                    e.active
                 FROM employees e
                 JOIN departments d ON e.department_id = d.id
                 JOIN positions p ON e.position_id = p.id";
@@ -139,7 +140,14 @@
                     <td><?php echo htmlspecialchars($row['position_title']); ?></td>
                     <td class="salary"><?php echo number_format($row['salary'], 0, '', ' '); ?> ₽</td>
                     <td><?php echo date('d.m.Y', strtotime($row['hire_date'])); ?></td>
-                    <td> <a href="employee_form.php?id=<?php echo $row['id']; ?>" class="btn-edit">Редактировать</a> </td>
+                    <td>
+                        <?php if ($row['active']): ?>
+                            <a href="employee_form.php?id=<?php echo $row['id']; ?>" class="btn-edit">Редактировать</a>
+                            <a href="deactivate_employee.php?id=<?php echo $row['id']; ?>" class="btn-fire" onclick="return confirm('Вы уверены, что хотите уволить этого сотрудника?');">Уволить</a>
+                        <?php else: ?>
+                            <span class="inactive-label">Уволен</span>
+                        <?php endif; ?>
+                    </td>
                 </tr>
                 <?php endwhile; ?>
             </tbody>

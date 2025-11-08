@@ -70,7 +70,8 @@
                 </div>
                 <div class="form-group">
                     <label>Паспорт (серия номер)</label>
-                    <input type="text" name="passport"  
+                    <input type="text" name="passport" pattern="\d{4}\s?\d{6}" 
+                    title="Введите все 10 цифр серии и номера паспорта"
                            value="<?php echo $employee['passport'] ?? ''; ?>" required>
                 </div>
             </div>
@@ -78,7 +79,8 @@
             <div class="form-row">
                 <div class="form-group">
                     <label>Телефон</label>
-                    <input type="text" name="phone"  
+                    <input type="text" name="phone" pattern="\+7\s?\(?\d{3}\)?\s?\d{3}-?\d{2}-?\d{2}" 
+                    title="Введите полностью номер телефона сотрудника"
                            value="<?php echo $employee['phone'] ?? ''; ?>" required>
                 </div>
                 <div class="form-group">

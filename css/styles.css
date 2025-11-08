@@ -264,3 +264,21 @@ h1 {
 .btn-edit:hover {
     background: midnightblue;
 }
+
+.btn-fire {
+    background-color: red;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.btn-fire:hover {
+    background-color: rgb(176, 0, 0);
+}
+
+.inactive-label {
+    color: gray;
+    font-style: italic;
+}
